@@ -1,8 +1,8 @@
-//#include <config.h>
+#include "objsect.h"
 #include "bfd.h"
 #include <unistd.h>
 #include <stdio.h>
-void printsections(const char *file){
+void print_sections(const char *file){
   
   //Needs to call this function before calling any other BFD function to initialize all the internal data structures
   bfd_init();
@@ -25,6 +25,7 @@ void printsections(const char *file){
 		 "%-25s %-18lx %-20ld  %-20ld\n",
 		 p->name, (unsigned long)p->vma, (long)p->size, (long)p->filepos);
     write(1,buffer,n);
+    printf("%lx", (unsigned long)p->vma);  
   }
   bfd_close(abfd);
   

@@ -2,7 +2,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include "bfd.h"
-extern void printsections(const char *filename);
+#include "objsect.h"
 int main(int argc, char *argv[]){
 
   if (argc != 2){
@@ -10,7 +10,7 @@ int main(int argc, char *argv[]){
     return 1;
   }
   const char *filename = argv[1];
-  printsections(filename);
+  print_sections(filename);
   
   return 0;
 }
