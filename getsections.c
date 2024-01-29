@@ -16,8 +16,19 @@ int main(int argc, char *argv[]){
     bfd_perror("Error opening the file");
     return;
   }
+  //Print the column headers
+  int n;
+  char buffer[1024];
   asection *p;
+  n = snprintf(buffer, sizeof(buffer),
+	       "%-25s %-20s %-20s %-20s\n",
+	       "Section Name", "VMA", "Size", "File Position");
+  write(1,buffer,n);
   for (p = abdfd->sections; p!= NULL, p->next){
-    
+    n = snprintf(buffer,sizeof(buffer),
+		 "%-25s %-181x %-20ld %20ld\n",
+		 p->name, (unsigned long)p->vma, (long)p->_cooked_size, (long)p->filepos);
+    write(1,buffer,n);
   }
+  bfd_close(abfd);
 }
