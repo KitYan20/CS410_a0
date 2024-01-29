@@ -1,6 +1,7 @@
-#include "bfd.h"
+#include "config.h"
 #include <unistd.h>
-
+#include <stdio.h>
+#include "bfd.h"
 int main(int argc, char *argv[]){
 
   if (argc != 2){
@@ -14,7 +15,7 @@ int main(int argc, char *argv[]){
 
   if (!abfd){
     bfd_perror("Error opening the file");
-    return;
+    return 1;
   }
   //Print the column headers
   int n;
@@ -24,11 +25,12 @@ int main(int argc, char *argv[]){
 	       "%-25s %-20s %-20s %-20s\n",
 	       "Section Name", "VMA", "Size", "File Position");
   write(1,buffer,n);
-  for (p = abdfd->sections; p!= NULL, p->next){
+  for (p = abfd->sections; p!= NULL, p->next){
     n = snprintf(buffer,sizeof(buffer),
 		 "%-25s %-181x %-20ld %20ld\n",
-		 p->name, (unsigned long)p->vma, (long)p->_cooked_size, (long)p->filepos);
+		 p->name, (unsigned long)p->vma, (long)p->cooked_size, (long)p->filepos);
     write(1,buffer,n);
   }
   bfd_close(abfd);
+  return 0;
 }
