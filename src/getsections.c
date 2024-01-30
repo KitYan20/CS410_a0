@@ -23,7 +23,7 @@ int main(int argc, char *argv[]){
     n = bfd_count_sections(abfd);
     printf("Num sections = %d\n", n);
     asection *p;
-    for (p = abfd->sections; p != NULL; p->next){
+    for (p = abfd->sections; p != NULL;p = p->next){
       printf("Section Name %s\n",p->name);
       printf("VMA 0x%lx\n",(unsigned long)p->vma);
       printf("Size 0x%lx\n",(long)p->size);
