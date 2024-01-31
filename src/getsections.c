@@ -1,15 +1,9 @@
-//#include <config.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "bfd.h"
 #include "objsect.h"
-void find_sections(bfd *abfd, asection *p, PTR obj){
-  printf("Section Name %s\n",p->name);
-  printf("VMA 0x%lx\n",(unsigned long)p->vma);
-  printf("Size 0x%lx\n",(long)p->size);
-  printf("File Position %ld\n",(long)p->filepos);
-}
+
 int main(int argc, char *argv[]){
 
   if (argc != 2){
@@ -18,7 +12,6 @@ int main(int argc, char *argv[]){
   }
 
   const char *filename = argv[1];
-  //print_sections(filename);
   bfd_init();
   bfd *abfd = bfd_openr(filename,NULL);
   

@@ -1,6 +1,6 @@
 #ifndef OBJSECT_H
 #define OBJSECT_H
-
-void print_sections(const char *filename);
+#include "bfd.h"
+void find_sections(bfd *abfd, asection *p, PTR obj);
 
 #endif
