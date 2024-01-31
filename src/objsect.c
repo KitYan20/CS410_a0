@@ -18,7 +18,7 @@ void find_sections(bfd *abfd, asection *p, PTR obj){
   //snprintf will help store the entire series of characters and numerical values into a character array buffer
   //n will print back out the total size of the buffer array in order to write back to standard out
   n = snprintf(buffer,sizeof(buffer),
-		 "Section Name: %-25s VMA: 0x%-18lx Size: 0x%-25lx  File Position: 0x%-5lx\n",
+		 "Section Name: %-25s VMA: 0x%-18lx Size: 0x%-25lx  File Position: 0x%-10lx\n",
 		 name,(long)vma,(long)size,(long)file_pos);
   write(1,&buffer,n);
 }
