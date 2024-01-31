@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
 
   const char *filename = argv[1];
   bfd_init();
-  bfd *abfd = bfd_openr(filename,NULL);
+  bfd *abfd = bfd_openr(filename,"elf64-x86-64" /*elf32-i386*/);
   
   if (!bfd_check_format(abfd,bfd_object)){
     bfd_perror("Error opening the file");
