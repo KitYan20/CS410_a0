@@ -1,13 +1,20 @@
 //#include <config.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "bfd.h"
 #include "objsect.h"
+void find_sections(bfd *abfd, asection *p, PTR obj){
+  printf("Section Name %s\n",p->name);
+  printf("VMA 0x%lx\n",(unsigned long)p->vma);
+  printf("Size 0x%lx\n",(long)p->size);
+  printf("File Position %ld\n",(long)p->filepos);
+}
 int main(int argc, char *argv[]){
 
   if (argc != 2){
     fprintf(stderr, "Usage: %s <object_file>\n",argv[1]);
-    return 1;
+    exit(-1);
   }
 
   const char *filename = argv[1];
@@ -17,20 +24,11 @@ int main(int argc, char *argv[]){
   
   if (!bfd_check_format(abfd,bfd_object)){
     bfd_perror("Error opening the file");
-    return 1;
+    exit(-1);
   }else{
-    unsigned int n;
-    n = bfd_count_sections(abfd);
-    printf("Num sections = %d\n", n);
-    asection *p;
-    for (p = abfd->sections; p != NULL;p = p->next){
-      printf("Section Name %s\n",p->name);
-      printf("VMA 0x%lx\n",(unsigned long)p->vma);
-      printf("Size 0x%lx\n",(long)p->size);
-      printf("File Position %ld\n",(long)p->filepos);
-     
-    }
+    
+    bfd_map_over_sections(abfd,find_sections,NULL);
     bfd_close(abfd);
   }
-  return 0;
+  exit(0);
 }
