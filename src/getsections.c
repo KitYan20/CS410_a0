@@ -7,7 +7,7 @@
 int main(int argc, char *argv[]){
 
   if (argc != 2){
-    fprintf(stderr, "Usage: %s <object_file>\n",argv[1]);
+    printf("No File");
     exit(-1);
   }
 
@@ -17,6 +17,7 @@ int main(int argc, char *argv[]){
   
   if (!bfd_check_format(abfd,bfd_object)){
     bfd_perror("Error opening the file");
+    bfd_close(abfd);
     exit(-1);
   }else{
     
