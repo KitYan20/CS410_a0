@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
+
 void find_sections(bfd *abfd, asection *p, PTR obj){
   //Set a buffer size of 1024 bytes
   char buffer[1024];

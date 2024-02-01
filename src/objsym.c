@@ -24,12 +24,12 @@ void find_symbols(char* filename){
     storage_needed = bfd_get_symtab_upper_bound(abfd);
 
     if (storage_needed == 0){
-        printf("No symbols loaded");
+        bfd_perror("No symbols loaded");
         bfd_close(abfd);
         exit(-1);
     }
     if (storage_needed < 0){
-        printf("Error getting symbol table size");
+        bfd_perror("Error getting symbol table size");
         bfd_close(abfd);
         exit(-1);
     }
@@ -38,7 +38,7 @@ void find_symbols(char* filename){
     number_of_symbols = bfd_canonicalize_symtab(abfd,symbol_table);
     //printf("Symbols %ld\n",number_of_symbols);
     if (number_of_symbols < 0){
-        printf("No symbols available");
+        bfd_perror("No symbols available");
         free(symbol_table);
         bfd_close(abfd);
         exit(-1);
