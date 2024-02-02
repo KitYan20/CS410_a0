@@ -3,21 +3,26 @@
 void numbers_to_ASCII(long num, char* string){
     int i = 0;
     if (num == 0){
-        string[i++] = '0';
+        string[i] = '0';
+        i++;
     }else{
         while (num != 0){
             int remainder = num % 16;
 
             if (remainder < 10){
-                string[i++] = remainder + '0';
+                string[i] = remainder + '0';
             }else{
-                string[i++] = remainder - 10 + 'A';
+                string[i] = remainder - 10 + 'A';
             }
-
+            i++;
             num /= 16;
         }
         
     }
+    while(i < 16){
+        string[i] = '0';
+        i++;
+    };
     //null character
     string[i] = '\0';
     reverse_string(string,i);

@@ -43,7 +43,6 @@ void find_symbols(char* filename){
         bfd_close(abfd);
         exit(-1);
     }
-    long value;
     //Get the character symbol of the symbol class
     // char symbol;
     
@@ -54,24 +53,26 @@ void find_symbols(char* filename){
     char newline = '\n';
     char hexString[17];
     for (i = 0; i < number_of_symbols; i++){
-        value = symbol_table[i]->value;
+        long value = symbol_table[i]->value;
         char symbol = (char)bfd_decode_symclass(symbol_table[i]);
         char *name = (char*)symbol_table[i]->name;
         strncpy(ns,name,sizeof(ns)-1);
-        //ns[sizeof(ns) - 1] = '\0'; 
+        ns[sizeof(ns) - 1] = '\0'; 
         // printf("Symbol %c\n",symbol);
-        //printf("0x%-5lx %c %20s\n",value,symbol,name);
-        // n = snprintf(buffer,sizeof(buffer),"0x%-5lx %c %20s\n",value,symbol,name);
-        // write(1,&buffer,n);
-        numbers_to_ASCII((long)value,hexString);
-        write(1,&hexString,sizeof(hexString));
-        write(1," ",sizeof(""));
-        write(1,ns,sizeof(ns));
-        write(1," ",sizeof(""));
-        write(1,&symbol,1);
-        write(STDOUT_FILENO,&newline,sizeof(newline));
-        
+        // printf("name %s\n",name);
+        // printf("0x%-5lx %c %20s\n",value,symbol,name);
+        n = snprintf(buffer,sizeof(buffer),"VMA:0x%-5ld Symbol:%c  Name: %20s\n",value,symbol,name);
+        write(1,&buffer,n);
 
+        // numbers_to_ASCII((long)value,hexString);
+        // write(1,"0x",sizeof("0x"));
+        // write(1,&hexString,sizeof(hexString));
+        // write(1," ",sizeof(""));
+        // write(1,ns,sizeof(ns));
+        // write(1," ",sizeof(""));
+        // write(1,&symbol,1);
+        // write(STDOUT_FILENO,&newline,sizeof(newline));
+        
     }
     free(symbol_table);
     bfd_close(abfd);
