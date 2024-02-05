@@ -47,4 +47,4 @@ libobjdata.a: objsecta.o objsyma.o helpera.o
 	ar rcs libobjdata.a objsecta.o objsyma.o helpera.o
 
 clean:
-	rm -f $(PROGS) *.o *.a *.so
+	rm -f $(PROGS) *.o *.a *.so *.txt

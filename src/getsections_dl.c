@@ -3,7 +3,7 @@
 #include "bfd.h"
 #include <stdio.h>
 #include <dlfcn.h>
-
+#include "helper.h"
 #define RDTSC(var)                                              \
   {                                                             \
     uint32_t var##_lo, var##_hi;                                \
@@ -39,8 +39,14 @@ int main(int argc, char *argv[]){
 
     bfd_close(abfd);
     dlclose(handle);
-    printf("Start: %lld\n", start);
-    printf("End %lld\n",finish);
+    long long frequency = 2304.000;
+    char buffer[20];
+    unsigned long long time = (finish - start)/frequency;
+    itoa(time,buffer);
+    write(1,buffer,sizeof(buffer));
+    
+    
+    
   }
   exit(0);
 }

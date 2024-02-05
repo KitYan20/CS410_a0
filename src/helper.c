@@ -1,5 +1,5 @@
 #include "helper.h"
-
+#include <string.h>
 void numbers_to_ASCII(long num, char* string){
     int i = 0;
     if (num == 0){
@@ -41,3 +41,26 @@ void reverse_string(char* string,long length){
 
     }
 }   
+void itoa(long long time, char *string){
+    int i=0;
+    while(time > 0){
+        string[i] = '0' + (time % 10 );
+        time /= 10;
+        i++;
+        
+    }
+    //string[i] = '\0';
+    int start = 0;
+    int end = i ;
+    if (i < 2){
+        string;
+    }else{
+        while(start < end){
+            char tmp = string[end];
+            string[end] = string[start];
+            string[start] = tmp;
+            start++;
+            end--;
+        }
+    }
+}
