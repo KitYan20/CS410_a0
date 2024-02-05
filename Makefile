@@ -20,6 +20,8 @@ objsect.o: ./src/objsect.c
 	$(CC) -fPIC -c ./src/objsect.c -I ./include
 objsym.o: ./src/objsym.c
 	$(CC) -fPIC -c ./src/objsym.c -I ./include
+objcopy.o: ./src/objcopy.c
+	$(CC) -fPIC -c ./src/objcopy.c -I ./include
 
 helpera.o: ./src/helper.c
 	$(CC) -c ./src/helper.c -I ./include -o helpera.o
@@ -27,6 +29,8 @@ objsecta.o: ./src/objsect.c
 	$(CC) -c  ./src/objsect.c -I ./include -o objsecta.o
 objsyma.o: ./src/objsym.c
 	$(CC) -c ./src/objsym.c -I ./include -o objsyma.o
+objcopya.o: ./src/objcopy.c
+	$(CC) -c ./src/objcopy.c -I ./include -o objcopya.o
 
 getsections_dl.o: ./src/getsections_dl.c
 	$(CC) -c ./src/getsections_dl.c -I ./include
@@ -47,4 +51,4 @@ libobjdata.a: objsecta.o objsyma.o helpera.o
 	ar rcs libobjdata.a objsecta.o objsyma.o helpera.o
 
 clean:
-	rm -f $(PROGS) *.o *.a *.so *.txt
+	rm -f $(PROGS) *.o *.a *.so 

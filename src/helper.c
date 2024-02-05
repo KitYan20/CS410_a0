@@ -19,7 +19,7 @@ void numbers_to_ASCII(long num, char* string){
         }
         
     }
-    while(i < 16){
+    while(i < 8){
         string[i] = '0';
         i++;
     };
@@ -36,9 +36,8 @@ void reverse_string(char* string,long length){
         char temp = string[start];
         string[start] = string[end];
         string[end] = temp;
-        ++start;
-        --end;
-
+        start++;
+        end--;
     }
 }   
 void itoa(long long time, char *string){
@@ -51,7 +50,7 @@ void itoa(long long time, char *string){
     }
     //string[i] = '\0';
     int start = 0;
-    int end = i ;
+    int end = i - 1 ;
     if (i < 2){
         string;
     }else{

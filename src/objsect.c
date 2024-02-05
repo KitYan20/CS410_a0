@@ -17,26 +17,26 @@ void find_sections(bfd *abfd, asection *p, PTR obj){
   //type cast a long point to get the memory address of the file position section
   long* file_pos= (long*)p->filepos;
   int n;
-  char hexString[17];
+  char hexString[9];
   char newString[256];
   //snprintf will help store the entire series of characters and numerical values into a character array buffer
   //n will print back out the total size of the buffer array in order to write back to standard out
-  n = snprintf(buffer,sizeof(buffer),
-		 "Section Name: %-25s Size: 0x%-18lx VMA: 0x%-25lx  File Position: 0x%-10lx\n",
-		 name,(long)size,(long)vma,(long)file_pos);
-  write(1,&buffer,n);
+  // n = snprintf(buffer,sizeof(buffer),
+	// 	 "Section Name: %-25s Size: 0x%-18lx VMA: 0x%-25lx  File Position: 0x%-10lx\n",
+	// 	 name,(long)size,(long)vma,(long)file_pos);
+  // write(1,&buffer,n);
 
-  // strncpy(newString,name,sizeof(newString)-1);
-  // newString[sizeof(newString)-1] = '\0';
-  // write(1,&newString,sizeof(newString));
-  // write(1," ",sizeof(""));
-  // numbers_to_ASCII((long)size,hexString);
-  // write(1,&hexString,sizeof(hexString));
-  // write(1," ",sizeof(""));
-  // numbers_to_ASCII((long)vma,hexString);
-  // write(1,&hexString,sizeof(hexString));
-  // write(1," ",sizeof(""));
-  // numbers_to_ASCII((long)file_pos,hexString);
-  // write(1,&hexString,sizeof(hexString));
-  // write(STDOUT_FILENO,"\n",sizeof("\n"));
+  strncpy(newString,name,sizeof(newString)-1);
+  newString[sizeof(newString)-1] = '\0';
+  write(1,&newString,sizeof(newString));
+  write(1," ",sizeof(""));
+  numbers_to_ASCII((long)size,hexString);
+  write(1,&hexString,sizeof(hexString));
+  write(1," ",sizeof(""));
+  numbers_to_ASCII((long)vma,hexString);
+  write(1,&hexString,sizeof(hexString));
+  write(1," ",sizeof(""));
+  numbers_to_ASCII((long)file_pos,hexString);
+  write(1,&hexString,sizeof(hexString));
+  write(STDOUT_FILENO,"\n",sizeof("\n"));
 }
