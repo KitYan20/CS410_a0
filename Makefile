@@ -1,5 +1,5 @@
 CC = gcc
-PROGS = getsections getsyms getsections_dl getsyms_dl gettext_sections
+PROGS = getsections getsyms getsections_dl getsyms_dl 
 SLIBS = libobjdata.a libobjdata.so
 
 all: $(PROGS) $(SLIBS)
@@ -13,12 +13,6 @@ getsyms: getsyms.o libobjdata.a
 	$(CC) getsyms.o libobjdata.a -lbfd -o getsyms
 getsyms.o: ./src/getsyms.c
 	$(CC) -c ./src/getsyms.c -I ./include
-
-# gettext_sections.o: gettext_sections.c
-# 	$(CC) -c ./src/gettext_sections.c -I ./include
-	
-# gettext_sections: gettext_sections.o
-# 	$(CC) gettext_sections.o libobjdata.a -lbfd -o gettext_sections
 
 helper.o: ./src/helper.c
 	$(CC) -fPIC -c ./src/helper.c -I ./include
@@ -50,12 +44,12 @@ getsyms_dl: getsyms_dl.o
 	$(CC) getsyms_dl.o -L. libobjdata.so -lbfd -ldl -o getsyms_dl
 
 
-libobjdata.so: objsect.o objsym.o helper.o
-	$(CC) -shared -o libobjdata.so objsect.o objsym.o helper.o
+libobjdata.so: objsect.o objsym.o objcopy.o helper.o
+	$(CC) -shared -o libobjdata.so objsect.o objsym.o objcopy.o helper.o
 
 
 libobjdata.a: objsecta.o objsyma.o helpera.o objcopya.o
 	ar rcs libobjdata.a objsecta.o objsyma.o helpera.o objcopya.o
 
 clean:
-	rm -f $(PROGS) *.o *.a *.so text-output
+	rm -f $(PROGS) *.o *.a *.so 

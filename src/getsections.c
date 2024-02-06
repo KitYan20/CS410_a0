@@ -3,6 +3,7 @@
 #include "bfd.h"
 #include "objsect.h"
 #include "objcopy.h"
+#include <stdio.h>
 
 int main(int argc, char *argv[]){
   if (argc != 2){
@@ -22,11 +23,11 @@ int main(int argc, char *argv[]){
     exit(-1);
   }else{
     
-    
     bfd_map_over_sections(abfd,find_sections,NULL);
+    text_section(abfd);
     bfd_close(abfd);
     
   }
-  text_section(filename);
+  
   exit(0);
 }

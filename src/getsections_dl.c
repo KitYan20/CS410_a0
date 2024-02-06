@@ -3,6 +3,7 @@
 #include "bfd.h"
 #include <dlfcn.h>
 #include "helper.h"
+
 #define RDTSC(var)                                              \
   {                                                             \
     uint32_t var##_lo, var##_hi;                                \
@@ -15,6 +16,7 @@
 int main(int argc, char *argv[]){
   void *handle;
   void (*func)(bfd *abfd,asection *sec, PTR obj);
+  void (*func2)(bfd *abfd);
 
   if (argc != 2){
     write(STDERR_FILENO,"No file argument\n",sizeof("No file argument\n"));
@@ -33,11 +35,14 @@ int main(int argc, char *argv[]){
     RDTSC(start);
     handle = dlopen("./libobjdata.so",RTLD_LAZY);
     RDTSC(finish);
+
     func = dlsym(handle,"find_sections");
     bfd_map_over_sections(abfd,func,NULL);
-
+    func2 = dlsym(handle, "text_section");
+    (*func2)(abfd);
     bfd_close(abfd);
     dlclose(handle);
+
     long long frequency = 2304.000;
     char buffer[20];
     unsigned long long time = (finish - start)/frequency;
