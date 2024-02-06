@@ -17,19 +17,20 @@ void find_sections(bfd *abfd, asection *p, PTR obj){
   //type cast a long point to get the memory address of the file position section
   long* file_pos= (long*)p->filepos;
   int n;
+  //Create a character array of char data types for 9 bytes for the hex string
   char hexString[9];
+  //Create a character array of char data types for 256 bytes for the section name
   char newString[256];
-  //snprintf will help store the entire series of characters and numerical values into a character array buffer
-  //n will print back out the total size of the buffer array in order to write back to standard out
-  // n = snprintf(buffer,sizeof(buffer),
-	// 	 "Section Name: %-25s Size: 0x%-18lx VMA: 0x%-25lx  File Position: 0x%-10lx\n",
-	// 	 name,(long)size,(long)vma,(long)file_pos);
-  // write(1,&buffer,n);
 
+  //Create a copy of the section name
   strncpy(newString,name,sizeof(newString)-1);
+  //set the section names last value null
   newString[sizeof(newString)-1] = '\0';
+  //Write the string back into standard out
   write(1,&newString,sizeof(newString));
   write(1," ",sizeof(""));
+  //Convert primitive data types of long to hex string and do the same process
+  //of writing string back to standard output
   numbers_to_ASCII((long)size,hexString);
   write(1,&hexString,sizeof(hexString));
   write(1," ",sizeof(""));
