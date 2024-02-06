@@ -1,7 +1,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "bfd.h"
-#include <stdio.h>
 #include <dlfcn.h>
 #include "helper.h"
 #define RDTSC(var)                                              \
