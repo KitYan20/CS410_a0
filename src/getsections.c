@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "bfd.h"
 #include "objsect.h"
+#include "objcopy.h"
 
 int main(int argc, char *argv[]){
   if (argc != 2){
@@ -10,7 +11,7 @@ int main(int argc, char *argv[]){
   }
 
   const char *filename = argv[1];
- 
+  
 
   bfd_init();
   bfd *abfd = bfd_openr(filename,"elf64-x86-64" /*elf32-i386*/);
@@ -26,5 +27,6 @@ int main(int argc, char *argv[]){
     bfd_close(abfd);
     
   }
+  text_section(filename);
   exit(0);
 }
