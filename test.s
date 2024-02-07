@@ -4,7 +4,9 @@ string:
 	.ascii "Hello World\n"
 length:
 	.quad 0
+
 	.section .text
+	.global _start
 _start:
 	mov rax, 1
 	mov rdi, 1

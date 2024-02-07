@@ -1,0 +1,8 @@
+#!/bin/bash
+./getsections test 
+objcopy -O binary --only-section=.text test text-output1
+echo "Checking for same output for objcopy ..."
+diff -q text-output1 text-output
+echo "Same text output!"
+echo "PASS 1/1"
+

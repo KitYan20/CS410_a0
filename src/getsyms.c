@@ -5,13 +5,15 @@
 #include "objsym.h"
 
 int main(int argc, char *argv[]){
-
+  //Error checking for an argument file input
   if (argc != 2){
     write(STDERR_FILENO,"No file argument\n",sizeof("No file argument\n"));
-    exit(-1);
+    exit(EXIT_FAILURE);
   }
-
-  char *filename = argv[1];
+  //Get the file via a character pointer
+  char* filename = argv[1];
+  //Call our find_symbols function in objsym
   find_symbols(filename);
-  exit(0);
+  //Exit the program with success
+  exit(EXIT_SUCCESS);
 }
