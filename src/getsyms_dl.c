@@ -4,6 +4,7 @@
 #include "objsym.h"
 #include <dlfcn.h>
 #include "helper.h"
+#include <stdio.h>
 
 #define RDTSC(var)                                              \
   {                                                             \
@@ -35,10 +36,13 @@ int main(int argc, char *argv[]){
     handle = dlopen("./libobjdata.so",RTLD_NOW);
     RDTSC(finish);
   }
-  long long frequency = 2304.000;
+  //To caluculate the time of a CPU frequency in seconds, you do
+  // seconds = 1/frequency(Mhz) * 10 ^ 6
+  double frequency = 2304 * (1e6);
   char buffer[20];
-  unsigned long long time = (finish - start)/frequency;
-
+  double time = (finish - start)/frequency;
+  //Convert seconds to microseconds
+  time = time * 1e6;
   itoa(time,buffer);
   write(1,buffer,sizeof(buffer));
   write(1,"\n",sizeof("\n"));

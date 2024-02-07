@@ -33,7 +33,7 @@ do
     
 done
 avg=$(($sum/50))
-echo Average for getsections_dl: $avg ms"(milliseconds)">> stats.txt 
+echo Average for getsections_dl: $avg microseconds >> stats.txt 
 echo "" >> stats.txt
 
 sumo=0
@@ -45,7 +45,7 @@ do
     (( sumo += $output1 ))
 done
 avg2=$(($sumo / 50))
-echo Average for getsyms_dl with RTLD_LAZY: $avg2 ms"(milliseconds)">> stats.txt 
+echo Average for getsyms_dl with RTLD_LAZY: $avg2 microseconds >> stats.txt 
 echo "" >>stats.txt
 
 sumo1=0
@@ -57,4 +57,4 @@ do
     (( sumo1 += $output1 ))
 done
 avg3=$(($sumo1 / 50))
-echo Average for getsyms_dl with RTLD_NOW: $avg3 ms"(milliseconds)">> stats.txt 
+echo Average for getsyms_dl with RTLD_NOW: $avg3 microseconds >> stats.txt 

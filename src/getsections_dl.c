@@ -43,9 +43,13 @@ int main(int argc, char *argv[]){
     bfd_close(abfd);
     dlclose(handle);
 
-    long long frequency = 2304.000;
+    //To caluculate the time of a CPU frequency in seconds, you do
+    // seconds = 1/frequency(Mhz) * 10 ^ 6
+    double frequency = 2304 * (1e6);
     char buffer[20];
-    unsigned long long time = (finish - start)/frequency;
+    double time = (finish - start)/frequency;
+    //Convert seconds to microseconds
+    time = time * 1e6;
     itoa(time,buffer);
     write(1,buffer,sizeof(buffer));
     
