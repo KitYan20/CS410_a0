@@ -1,8 +1,19 @@
 #!/bin/bash
-./getsections test 
+make libobjdata.so
+echo "Testing objcopy in getsections ..." 
+make getsections
+# ./getsections test 
 objcopy -O binary --only-section=.text test text-output1
 echo "Checking for same output for objcopy ..."
 diff -q text-output1 text-output
 echo "Same text output!"
 echo "PASS 1/1"
 
+echo "Testing objcopy in getsections_dl ..." 
+make getsections_dl
+# ./getsections_dl test 
+objcopy -O binary --only-section=.text test text-output2
+echo "Checking for same output for objcopy ..."
+diff -q text-output2 text-output
+echo "Same text output!"
+echo "PASS 1/1"

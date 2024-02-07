@@ -66,7 +66,9 @@ void find_symbols(char* filename){
     for (i = 0; i < number_of_symbols; i++){
         //This will get the vma of the symbol
         long value = symbol_table[i]->value;
+        //Gets the Virtual Memory Address of the section 
         bfd_vma vma = symbol_table[i]->section->vma;
+        //Adding the vma and the symbol table value will give back the VMA
         value = vma + value;
     
         //Gets the unicode of the symbol

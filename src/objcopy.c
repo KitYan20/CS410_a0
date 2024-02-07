@@ -7,10 +7,10 @@
 void text_section(bfd *abfd){
 
     FILE* output = fopen("text-output","wb");
-    bfd_byte *contents;
     asection *section = bfd_get_section_by_name(abfd, ".text");
     bfd_size_type size = bfd_section_size(section);
-    contents = (bfd_byte*)malloc(size);
+    bfd_byte *contents = (bfd_byte*)malloc(size);
+   
     
     if (contents == NULL){
         //printf("Failed to allocate memory\n");
