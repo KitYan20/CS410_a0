@@ -62,9 +62,13 @@ void find_symbols(char* filename){
     char ns[256];
     char newline = '\n';
     char hexString[9];
+    
     for (i = 0; i < number_of_symbols; i++){
         //This will get the vma of the symbol
         long value = symbol_table[i]->value;
+        bfd_vma vma = symbol_table[i]->section->vma;
+        value = vma + value;
+    
         //Gets the unicode of the symbol
         char symbol = (char)bfd_decode_symclass(symbol_table[i]);
         //Gets the name of the symbol
