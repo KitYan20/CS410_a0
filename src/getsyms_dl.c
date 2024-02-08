@@ -4,7 +4,7 @@
 #include "objsym.h"
 #include <dlfcn.h>
 #include "helper.h"
-#include <stdio.h>
+
 
 #define RDTSC(var)                                              \
   {                                                             \

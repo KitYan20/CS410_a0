@@ -1,7 +1,6 @@
 #include "objsect.h"
 #include "bfd.h"
 #include <unistd.h>
-#include <stdio.h>
 #include <string.h>
 #include "helper.h"
 
