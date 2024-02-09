@@ -39,7 +39,7 @@ echo "" >> stats.txt
 sumo=0
 for ((i=1; i <51 ;i++));
 do
-    output1=$(./getsyms_dl getsyms_dl RTLD_LAZY| head -1) 
+    output1=$(./getsyms_dl getsyms_dl 1| head -1) 
     echo "GetSymsDL $i times: $output1" >> stats.txt
     #echo $i $output >> stats.txt
     (( sumo += $output1 ))
@@ -51,7 +51,7 @@ echo "" >>stats.txt
 sumo1=0
 for ((i=1; i <51 ;i++));
 do
-    output1=$(./getsyms_dl getsyms_dl RTLD_NOW| head -1) 
+    output1=$(./getsyms_dl getsyms_dl 2| head -1) 
     echo "GetSymsDL $i times: $output1" >> stats.txt
     #echo $i $output >> stats.txt
     (( sumo1 += $output1 ))

@@ -1,10 +1,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include "bfd.h"
-#include "objsym.h"
 #include <dlfcn.h>
 #include "helper.h"
-
 
 #define RDTSC(var)                                              \
   {                                                             \
@@ -27,14 +25,18 @@ int main(int argc, char *argv[]){
   
   
   int rtld_flag = atoi(argv[2]);
-  if (rtld_flag == RTLD_LAZY){
+  
+  if (rtld_flag == 1){
     RDTSC(start);
     handle = dlopen("./libobjdata.so",RTLD_LAZY);
     RDTSC(finish);
-  }else{
+  }else if (rtld_flag == 2){
     RDTSC(start);
     handle = dlopen("./libobjdata.so",RTLD_NOW);
     RDTSC(finish);
+  }else{
+    write(STDERR_FILENO,"Wrong RTLD (Run Time Dynamic Linker) option\n",sizeof("Wrong RTLD (Run Time Dynamic Linker) option\n"));
+    exit(-1);
   }
   //To caluculate the time of a CPU frequency in seconds, you do
   // seconds = 1/frequency(Mhz) * 10 ^ 6
