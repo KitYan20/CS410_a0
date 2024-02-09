@@ -21,7 +21,7 @@ int main(int argc, char *argv[]){
   char *filename = argv[1];
   
   if (argc != 3){
-    write(STDERR_FILENO,"No file argument or RTLD (Run Time Dynamic Linker) option\n",sizeof("No file argument\n"));
+    write(STDERR_FILENO,"No file argument or RTLD (Run Time Dynamic Linker) option\n",sizeof("No file argument or RTLD (Run Time Dynamic Linker) option\n"));
     exit(-1);
   }
   

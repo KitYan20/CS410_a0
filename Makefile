@@ -1,8 +1,9 @@
 CC = gcc
 PROGS = getsections getsyms getsections_dl getsyms_dl test
-SLIBS = libobjdata.a libobjdata.so
+SLIBS = libobjdata.a 
+LIBS = libobjdata.so
 
-all: $(PROGS) $(SLIBS)
+all:  $(LIBS) $(PROGS) $(SLIBS)
 test:test.o
 	ld -g test.o -o test
 test.o:test.s
@@ -40,10 +41,10 @@ getsections_dl.o: ./src/getsections_dl.c
 getsyms_dl.o: ./src/getsyms_dl.c
 	$(CC) -c ./src/getsyms_dl.c -I ./include
 
-getsections_dl: getsections_dl.o 
+getsections_dl: getsections_dl.o $(LIBS)
 	$(CC) getsections_dl.o -L. libobjdata.so -lbfd -ldl -o getsections_dl
 
-getsyms_dl: getsyms_dl.o 
+getsyms_dl: getsyms_dl.o $(LIBS)
 	$(CC) getsyms_dl.o -L. libobjdata.so -lbfd -ldl -o getsyms_dl
 
 
