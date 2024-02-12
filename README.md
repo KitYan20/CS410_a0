@@ -2,7 +2,7 @@
 Running on a Ubuntu Linux Virtual Machine using Virtual Box. Also, the function to get the text in objcopy.c will be called in
 getsections.c and getsections_dl.c
 ### CPU Configuration
-CPU: Intel Core i7-11800-H
+CPU: Intel Core i7-11800-H runing aorund 2300 mhz.
 ### Compiling the programs
 Compiling the programs is fairly simple as I created a Makefile to compile/link all the neccesary dependencies (eg static libraries, shared libraries) into it's corresponding binary files.
 The only thing that you have to do first is to set where the shared object library will be available in the computer. Write the following command above in the terminal to set the library path
