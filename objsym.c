@@ -59,7 +59,6 @@ void find_symbols(char* filename){
     //Allocate enough bytes to write to standard out
     char buffer[1024];
     char ns[256];
-    char newline = '\n';
     char hexString[9];
     
     for (i = 0; i < number_of_symbols; i++){
@@ -88,7 +87,7 @@ void find_symbols(char* filename){
         write(1,&symbol,1);
         write(1," ",sizeof(""));
         write(1,ns,sizeof(ns));
-        write(1,&newline,sizeof(newline));
+        write(1,"\n",sizeof("\n"));
         
     }
     //Free the memory of the symbol_table and close the bfd and exit with 0 indicating exit with no error

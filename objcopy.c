@@ -21,7 +21,7 @@ void text_section(bfd *abfd){
     if (contents == NULL){
         bfd_perror("Failed to allocate memory\n");
         bfd_close(abfd);
-        exit(-1);
+        exit(EXIT_FAILURE);
     }
     //We use the bfd_get_section_contents to read the data from the text section reading
     //starting at offset 0 and given size bytes and reads it into contents in memory

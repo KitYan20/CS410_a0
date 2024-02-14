@@ -38,5 +38,5 @@ void find_sections(bfd *abfd, asection *p, PTR obj){
   write(1," ",sizeof(""));
   numbers_to_ASCII((long)file_pos,hexString);
   write(1,&hexString,sizeof(hexString));
-  write(STDOUT_FILENO,"\n",sizeof("\n"));
+  write(1,"\n",sizeof("\n"));
 }
