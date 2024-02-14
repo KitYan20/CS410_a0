@@ -1,5 +1,5 @@
 CC = gcc
-PROGS = getsections getsyms getsections_dl getsyms_dl test
+PROGS = getsections getsyms gettext getsections_dl getsyms_dl test
 SLIBS = libobjdata.a 
 LIBS = libobjdata.so
 OBJS = objsect.o objsym.o objcopy.o helper.o
@@ -24,6 +24,8 @@ test.o:test.s
 getsections: getsections.o $(SLIBS)
 	$(CC) $^ -lbfd -o $@
 getsyms: getsyms.o $(SLIBS)
+	$(CC)  $^ -lbfd -o $@
+gettext: gettext.o $(SLIBS)
 	$(CC)  $^ -lbfd -o $@
 getsections_dl: getsections_dl.o $(LIBS)
 	$(CC)  $(LD) $^ $(LDLIBS) -o $@

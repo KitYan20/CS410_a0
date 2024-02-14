@@ -32,8 +32,6 @@ int main(int argc, char *argv[]){
     //Call the bfd_map_over_sections to iterate through each section of the gile argument
     //find_sections function will be called to print out each of the section contents for the map_over_sections function
     bfd_map_over_sections(abfd,find_sections,NULL);
-    //text_section will get the contents of the .text section in either ELF binary file or object file
-    text_section(abfd);
     //Close the bfd library ending all operations
     bfd_close(abfd);
     

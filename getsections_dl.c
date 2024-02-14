@@ -36,13 +36,11 @@ int main(int argc, char *argv[]){
     handle = dlopen("./libobjdata.so",RTLD_LAZY);
     RDTSC(finish);
 
+    //Finds the address of the symbol for the find_sections function in the dynamic library
     func = dlsym(handle,"find_sections");
+    //Use that function for bfd_map_over_sections instead of calling it from the header file
     bfd_map_over_sections(abfd,func,NULL);
-    func2 = dlsym(handle, "text_section");
-    (*func2)(abfd);
-    bfd_close(abfd);
-    dlclose(handle);
-
+    
     //To caluculate the time of a CPU frequency in seconds, you do
     // seconds = 1/frequency(Mhz) * 10 ^ 6
     double frequency = 2304 * (1e6);
