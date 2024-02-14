@@ -15,7 +15,7 @@ all:  $(LIBS) $(PROGS) $(SLIBS)
 libobjdata.so: $(OBJS)
 	$(CC) -shared -o $@ $^
 libobjdata.a: $(SOBJS)
-	ar rcs $@ $^
+	ar rc $@ $^
 
 test:test.o
 	ld -g $^ -o $@
