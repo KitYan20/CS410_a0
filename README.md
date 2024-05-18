@@ -1,4 +1,4 @@
-# CS410_a2
+# CS410_a0 -> A Binary File Descriptor Program using Static and Dynamic Library
 
 ### General Info
 Running on a Ubuntu Linux Virtual Machine using Virtual Box. Also, the function to get the text in objcopy.c will be called in
